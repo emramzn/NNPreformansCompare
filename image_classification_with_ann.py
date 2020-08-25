@@ -18,7 +18,7 @@ from keras.layers import Activation
 
 (x_train,y_train),(x_test,y_test)=fashion_mnist.load_data()
 
-plt.figure(figsize=[8,8])
+plt.figure(figsize=[5,5])
 plt.imshow(x_train[5], cmap="gray")
 plt.show()
 print("Label : ", y_train[5])
@@ -44,104 +44,104 @@ y_test=to_categorical(y_test)
 
 print(x_train.shape, x_test.shape, y_train.shape, y_test.shape)
 
-#model=Sequential()
-#model.add(Dense(50, input_shape=(784, )))
-#model.add(Activation("sigmoid"))
-#model.add(Dense(50))
-#model.add(Activation("sigmoid"))
-#model.add(Dense(50))
-#model.add(Activation("relu"))
-#model.add(Dense(50))
-#model.add(Activation("sigmoid"))
-#model.add(Dense(10))
-#model.add(Activation("softmax"))
-#
-#sgd=optimizers.sgd(learning_rate=0.01)
-#model.compile(optimizer=sgd,loss="categorical_crossentropy", metrics=['accuracy'])
-#
-#history=model.fit(x_train,y_train,batch_size=256,epochs=30,verbose=1)
-#results=model.evaluate(x_test,y_test)
-#
-#print("Test accuracy: ", results[1])
+model=Sequential()
+model.add(Dense(50, input_shape=(784, )))
+model.add(Activation("sigmoid"))
+model.add(Dense(50))
+model.add(Activation("sigmoid"))
+model.add(Dense(50))
+model.add(Activation("relu"))
+model.add(Dense(50))
+model.add(Activation("sigmoid"))
+model.add(Dense(10))
+model.add(Activation("softmax"))
 
-#def mlp_model():
-#  model=Sequential()
-#  model.add(Dense(50 , input_shape=(784,), kernel_initializer="he_normal"))
-#  model.add(Activation('sigmoid'))
-#  model.add(Dense(50,kernel_initializer="he_normal"))
-#  model.add(Activation('sigmoid'))
-#  model.add(Dense(50,kernel_initializer="he_normal"))
-#  model.add(Activation('relu'))
-#  model.add(Dense(50, kernel_initializer='he_normal'))
-#  model.add(Activation('sigmoid'))
-#  model.add(Dense(10, kernel_initializer='he_normal'))
-#  model.add(Activation('softmax'))
-#
-#  sgd=optimizers.sgd(learning_rate=0.01)
-#  model.compile(optimizer=sgd,loss='categorical_crossentropy', metrics=['accuracy'])
-#
-#  return model
-#
-#model=mlp_model()
-#history=model.fit(x_train,y_train,batch_size=200,epochs=50,verbose=1)
-#result2=model.evaluate(x_test,y_test)
-#
-#
-#print("Test accuracy: ", result2[1])
-#
+sgd=optimizers.sgd(learning_rate=0.01)
+model.compile(optimizer=sgd,loss="categorical_crossentropy", metrics=['accuracy'])
 
-#def MLP_Model():
-#  model=Sequential()
-#  model.add(Dense(50, input_shape=(784,)))
-#  model.add(Activation('relu'))
-#  model.add(Dense(50))
-#  model.add(Activation('relu'))
-#  model.add(Dense(50))
-#  model.add(Activation('sigmoid'))
-#  model.add(Dense(50))
-#  model.add(Activation('relu'))
-#  model.add(Dense(10))
-#  model.add(Activation('softmax'))
+history=model.fit(x_train,y_train,batch_size=256,epochs=30,verbose=1)
+results=model.evaluate(x_test,y_test)
+
+print("Test accuracy: ", results[1])
+
+def mlp_model():
+  model=Sequential()
+  model.add(Dense(50 , input_shape=(784,), kernel_initializer="he_normal"))
+  model.add(Activation('sigmoid'))
+  model.add(Dense(50,kernel_initializer="he_normal"))
+  model.add(Activation('sigmoid'))
+  model.add(Dense(50,kernel_initializer="he_normal"))
+  model.add(Activation('relu'))
+  model.add(Dense(50, kernel_initializer='he_normal'))
+  model.add(Activation('sigmoid'))
+  model.add(Dense(10, kernel_initializer='he_normal'))
+  model.add(Activation('softmax'))
+
+  sgd=optimizers.sgd(learning_rate=0.01)
+  model.compile(optimizer=sgd,loss='categorical_crossentropy', metrics=['accuracy'])
+
+  return model
+
+model=mlp_model()
+history=model.fit(x_train,y_train,batch_size=200,epochs=50,verbose=1)
+result2=model.evaluate(x_test,y_test)
+
+
+print("Test accuracy: ", result2[1])
+
+
+def MLP_Model():
+  model=Sequential()
+  model.add(Dense(50, input_shape=(784,)))
+  model.add(Activation('relu'))
+  model.add(Dense(50))
+  model.add(Activation('relu'))
+  model.add(Dense(50))
+  model.add(Activation('sigmoid'))
+  model.add(Dense(50))
+  model.add(Activation('relu'))
+  model.add(Dense(10))
+  model.add(Activation('softmax'))
+
+  optimizerX=optimizers.SGD(learning_rate=0.001)
+  model.compile(optimizer=optimizerX,loss='categorical_crossentropy',metrics=['accuracy'])
+
+  return model
+
+model2=MLP_Model()
+history=model2.fit(x_train,y_train,batch_size=256,epochs=10,verbose=1)
+result3=model2.evaluate(x_test,y_test)
+print("Test accuracy: ", result3[1])
+"""Batch Normalization"""
 #
-#  optimizerX=optimizers.SGD(learning_rate=0.001)
-#  model.compile(optimizer=optimizerX,loss='categorical_crossentropy',metrics=['accuracy'])
-#
-#  return model
-#
-#model2=MLP_Model()
-#history=model2.fit(x_train,y_train,batch_size=256,epochs=10,verbose=1)
-#result3=model2.evaluate(x_test,y_test)
-#print("Test accuracy: ", result3[1])
-#"""Batch Normalization"""
-##
-#def MLP_model():
-#  model=Sequential()
-#  model.add(Dense(50, input_shape=(784,)))
-#  model.add(BatchNormalization())
-#  model.add(Activation('relu'))
-#  model.add(Dense(50))
-#  model.add(BatchNormalization())
-#  model.add(Activation('relu'))
-#  model.add(Dense(50))
-#  model.add(BatchNormalization())
-#  model.add(Activation('relu'))
-#  model.add(Dense(50))
-#  model.add(BatchNormalization())
-#  model.add(Activation('relu'))
-#  model.add(Dense(10))
-#  model.add(Activation('softmax'))
-#
-#  SGDOP=optimizers.SGD(learning_rate=0.01)
-#  model.compile(optimizer=SGDOP,loss='categorical_crossentropy',metrics=['accuracy'])
-#
-#  return model
-#
-#model3=MLP_model()
-#history=model3.fit(x_train,y_train,batch_size=256,epochs=20,verbose=1)
-#
-#print(model3.evaluate(x_test, y_test))
-#
-#"""Dropout"""
+def MLP_model():
+  model=Sequential()
+  model.add(Dense(50, input_shape=(784,)))
+  model.add(BatchNormalization())
+  model.add(Activation('relu'))
+  model.add(Dense(50))
+  model.add(BatchNormalization())
+  model.add(Activation('relu'))
+  model.add(Dense(50))
+  model.add(BatchNormalization())
+  model.add(Activation('relu'))
+  model.add(Dense(50))
+  model.add(BatchNormalization())
+  model.add(Activation('relu'))
+  model.add(Dense(10))
+  model.add(Activation('softmax'))
+
+  SGDOP=optimizers.SGD(learning_rate=0.01)
+  model.compile(optimizer=SGDOP,loss='categorical_crossentropy',metrics=['accuracy'])
+
+  return model
+
+model3=MLP_model()
+history=model3.fit(x_train,y_train,batch_size=256,epochs=20,verbose=1)
+
+print(model3.evaluate(x_test, y_test))
+
+"""Dropout"""
 
 def MLP_MODEL():
   model=Sequential()
@@ -157,10 +157,10 @@ def MLP_MODEL():
   model.add(BatchNormalization())
   model.add(Activation('relu'))
   model.add(Dropout(0.2))
-#  model.add(Dense(50, kernel_initializer='he_normal'))
-#  model.add(BatchNormalization())
-#  model.add(Activation('relu'))
-#  model.add(Dropout(0.2))
+  model.add(Dense(50, kernel_initializer='he_normal'))
+  model.add(BatchNormalization())
+  model.add(Activation('relu'))
+  model.add(Dropout(0.2))
   model.add(Dense(10, kernel_initializer='he_normal'))
   model.add(Activation('softmax'))
 
